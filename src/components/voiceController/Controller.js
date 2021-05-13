@@ -6,9 +6,9 @@ import SpeechRecognition, {
 import microPhoneIcon from "../../assets/mic.svg";
 import ROUTE_PATH from "../../constants/Routes";
 import "./styles.scss";
+
 export default function Controller() {
   const history = useHistory();
-  const pages = ["home", "blog", "new blog post", "contact"];
   const urls = {
     home: ROUTE_PATH.HOME,
     about: ROUTE_PATH.ABOUT,
@@ -35,14 +35,8 @@ export default function Controller() {
         handleReset();
       },
     },
-    ,
-    {
-      command: "reset background colour",
-      callback: () => {
-        document.body.style.background = `rgba(0, 0, 0, 0.8)`;
-      },
-    },
   ];
+
   const { transcript, resetTranscript } = useSpeechRecognition({ commands });
   const [isListening, setIsListening] = useState(false);
   const microphoneRef = useRef(null);
@@ -79,7 +73,7 @@ export default function Controller() {
             ref={microphoneRef}
             onClick={handleListing}
           >
-            <img src={microPhoneIcon} className="microphone-icon" />
+            <img src={microPhoneIcon} alt="mic" className="microphone-icon" />
           </div>
           <div className="microphone-status">
             {isListening ? "Listening........." : "Click to start Listening"}
